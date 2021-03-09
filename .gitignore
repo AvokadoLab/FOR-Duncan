@@ -1,0 +1,18 @@
+# IAR Settings  
+EWARM/settings/*.crun  
+EWARM/settings/*.dbgdt  
+EWARM/settings/*.cspy  
+EWARM/settings/*.cspy.*  
+EWARM/settings/*.xcl  
+EWARM/settings/*.dni  
+EWARM/settings/*.wsdt  
+EWARM/settings/*.wspos  
+
+EWARM/FIG_BRMV_v1.0/
+EWARM/FIG_BRMV_v1.0.dep
+EWARM/settings/FIG_BRMV_v1.0.dnx
+
+# CubeMX Auto Generated Files
+Drivers/
+Core/Inc/stm32f4xx_hal_conf.h
+Core/Src/system_stm32f4xx.c
