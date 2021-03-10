@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "icm-20600_spi/icm-20600_spi.h"
+#include "esp8266_spi/esp8266_spi.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,7 +57,8 @@ static void MX_SPI1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint32_t txData;
+uint8_t rxData[33];
+uint32_t status;
 
 /* USER CODE END 0 */
 
@@ -92,15 +93,23 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
-  ICM20600_Init(&hspi1, GPIOA, GPIO_PIN_4);
+  ESP8266_Init(&hspi1, GPIOA, GPIO_PIN_4);
   
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  ESP8266_WriteData("Hello Slave!", 12);
+  uint32_t i = 0;
   while (1)
   {
-    ICM20600_writeByte(0x01, 2);
+    ESP8266_WriteStatus(i++);
+    HAL_Delay(10);
+    status = ESP8266_ReadStatus();
+    HAL_Delay(10);
+    ESP8266_WriteData("Are you alive?", 14);
+    HAL_Delay(50);
+    ESP8266_ReadData(rxData);
     HAL_Delay(10);
     
     /* USER CODE END WHILE */
@@ -179,11 +188,11 @@ static void MX_SPI1_Init(void)
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi1.Init.DataSize = SPI_DATASIZE_16BIT;
+  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;

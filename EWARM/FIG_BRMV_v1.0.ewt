@@ -1433,12 +1433,12 @@
             <group>
                 <name>Core</name>
                 <group>
-                    <name>icm-20600_spi</name>
+                    <name>esp8266_spi</name>
                     <file>
-                        <name>$PROJ_DIR$\..\Core\Inc\icm-20600_spi\icm-20600_spi.c</name>
+                        <name>$PROJ_DIR$\..\Core\Inc\esp8266_spi\esp8266_spi.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Core\Inc\icm-20600_spi\icm-20600_spi.h</name>
+                        <name>$PROJ_DIR$\..\Core\Inc\esp8266_spi\esp8266_spi.h</name>
                     </file>
                 </group>
                 <file>
